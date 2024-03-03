@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6fc1ff;
+            
+        }
+        .container {
+            width: 350px;
+            margin: 50px auto 0;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2496ff;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: black;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Initially hide the error message */
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var password = document.getElementById("userPass").value;
+            var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById("passwordError").style.display = "block";
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form action="servlet/Register" method="post" onsubmit="return validateForm()">
+            <h1>Registration Form</h1>
+            <label for="userName">Username:</label>
+            <input type="text" name="userName" id="userName"/><br/><br/>   
+            <label for="userPass">Password:</label>
+            <input type="password" name="userPass" id="userPass"/>
+            <span id="passwordError" class="error-message">Password must be at least 8 characters long and contain at least one uppercase, lowercase, digit, and a special character.</span>
+            <br/><br/>  
+            <label for="userEmail">Email:</label>
+            <input type="email" name="userEmail" id="userEmail"/><br/><br/>  
+            <label for="userCountry">Country:</label>
+            <select name="userCountry" id="userCountry">  
+                <option>India</option>  
+                <option>Pakistan</option>  
+                <option>other</option>  
+            </select>  
+            <br/><br/>  
+            <input type="submit" value="Register"/>  
+            Already have an account?<a href='/Login/login.html'>Login Here</a>
+        </form>  
+    </div>
+</body>
+</html>
